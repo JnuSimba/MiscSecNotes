@@ -80,8 +80,8 @@ Php-fpm账户不要用root或者加入root组。
 
 ## 0x06 Nginx安全配置方案
 
-1. 修改网站目录所有者为非php-fpm运行账户，此处修改所有者为root。  
-命令：`chown -R root:root html/` 
+1. 修改网站目录所有者为非php-fpm运行账户，此处修改所有者为root。    
+命令：`chown -R root:root html/`   
 ![](../pictures/nginxconf1.jpg)  
 
 2. 修改nginx及php-fpm的运行账户及组为nobody  

@@ -80,7 +80,6 @@
 
 * 信息泄露
 	* [信息泄露](信息泄露/信息泄露.md)
-	* [未授权访问漏洞总结](信息泄漏/未授权访问漏洞总结.md)  
 
 * Bypass WAF
 	* [bypass sqli](Bypass%20WAF/bypass%20sqli.md)
