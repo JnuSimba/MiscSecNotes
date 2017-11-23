@@ -99,16 +99,16 @@ AuthorizedKeysFile .ssh/authorized_keysPasswordAuthentication no  # 禁止密�
 ### ssh 加固：除了私钥登录，再加上一层随机token 保障  TOTP协议：  https://tools.ietf.org/html/rfc6238   Google-Authenticator：  https://github.com/google/google-authenticator  https://aws.amazon.com/cn/blogs/startups/securing-ssh-to-amazon-ec2-linux-hosts/   https://wiki.archlinux.org/index.php/Google_Authenticator     
 ### ssh 伪装技巧：  
   
-1. 作为跳板的时候，我们有可能需要用本机的ssh去访问别的机器，为了不保存别的机器的公钥在当前用户的目录下  
-`ssh -o UserKnownHostsFile=/dev/null -T user@host /bin/bash –i`  就可以了，但在这样运行某些命令的时候可能会有提示，说你的stdin不是个terminal，这里可以这样解决：python -c 'import pty; pty.spawn("/bin/sh")' 或者自己再建立个ttyshell。  
+1. 作为跳板的时候，我们有可能需要用本机的ssh去访问别的机器，为了不保存别的机器的公钥在当前用户的目录下    
+`ssh -o UserKnownHostsFile=/dev/null -T user@host /bin/bash –i`    就可以了，但在这样运行某些命令的时候可能会有提示，说你的stdin不是个terminal，这里可以这样解决：python -c 'import pty; pty.spawn("/bin/sh")' 或者自己再建立个ttyshell。    
   
-2. 登录ssh之后不记录history（记住：从 webshell弹回的shell也会记录你的操作）`unset HISTORY HISTFILE HISTSAVE HISTZONE HISTORY HISTLOG; export HISTFILE=/dev/null; export HISTSIZE=0; export HISTFILESIZE=0`    
+2. 登录ssh之后不记录history（记住：从 webshell弹回的shell也会记录你的操作）    `unset HISTORY HISTFILE HISTSAVE HISTZONE HISTORY HISTLOG; export HISTFILE=/dev/null; export HISTSIZE=0; export HISTFILESIZE=0`    
   
-3. 在跳板上登录目标 ssh -T somebody@1.1.1.1 /bin/bash –i，管理员使用 w 命令也查看不到登录tty状态。  
+3. 在跳板上登录目标 ssh -T somebody@1.1.1.1 /bin/bash –i，管理员使用 w 命令也查看不到登录tty状态。    
   
-4. 检查登录失败特征一般来说，我们可以查看/etc/syslog.conf来获得log文件存放的位置，比如redhat 将登录日志保存在/var/log/secure。`grep "Failed password for root" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | more`  注意：有很多运维喜欢半夜做发布，故登录时间比较晚不一定是黑客，主要看失败次数，以及登录的聚集时间。  
+4. 检查登录失败特征  一般来说，我们可以查看/etc/syslog.conf来获得log文件存放的位置，比如redhat 将登录日志保存在/var/log/secure。  `grep "Failed password for root" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | more`  注意：有很多运维喜欢半夜做发布，故登录时间比较晚不一定是黑客，主要看失败次数，以及登录的聚集时间。    
   
-5. sftp 登录SSH File Transfer Protocol (SFTP) is a part of the SSH protocol suite. Sometimes also called the Secure File Transfer Protocol, it provides implements secure file transfers over SSH. It supports the full security and authentication functionality of the SSH protocol, including SSH keys.Only successful login attempt via sftp yourusername@yourservername are logged into /var/log/auth.log marked withTIMESTAMP SERVERNAME sshd[xxxx] subsystem request for sftp  
+5. sftp 登录  SSH File Transfer Protocol (SFTP) is a part of the SSH protocol suite. Sometimes also called the Secure File Transfer Protocol, it provides implements secure file transfers over SSH. It supports the full security and authentication functionality of the SSH protocol, including SSH keys.Only successful login attempt via sftp yourusername@yourservername are logged into /var/log/auth.log marked withTIMESTAMP SERVERNAME sshd[xxxx] subsystem request for sftp    
   
 ## 检查文件状态改动时间  
 在windows下，一个文件有：创建时间、修改时间、访问时间。  
@@ -308,7 +308,7 @@ apt-get install lrzsz
 　　一般linux服务器都默认安装了python，那么可以借助python快速开启一个http服务。  
   
 本文总结的都是一些Linux入侵检测最基础的命令，至于怎么用好这些命令，需要结合实际情况，主要还是看经验。以上所诉，还只是入侵检测信息收集阶段，至于如何通过现有信息分析出入侵途径，还需要借助其他工具以及知识。  
-## 渗透反辅### 密码读取    a) Windows: Mimikatz     b) Linux: mimipenguin  ### 帐号信息     a) 操作系统帐号     b) 数据库帐号    c) 应用帐号信息  ### 敏感信息   a) 配置信息     b) 数据库信息     c) 服务端口信息     d) 指纹信息  ### 滚雪球式线性拓展   a) 密码口令类拓展（远控）     b) 典型漏洞批量利用  ### 常见的入侵方式Getshell方法   a) WEB入侵     ​    i. 典型漏洞：注入Getshell , 上传Getshell，命令执行Getshell，文件包含Getshell，代码执行Getshell，编辑器getshell，后台管理Getshell，数据库操作Getshell     ​    ii. 容器相关：Tomcat、Axis2、WebLogic等中间件弱口令上传war包等，Websphere、weblogic、jboss反序列化，Struts2代码执行漏洞，Spring命令执行漏洞     b) 系统入侵     ​    i. SSH 破解后登录操作     ​    ii. RDP 破解后登录操作     ​    iii. MSSQL破解后远控操作     ​    iv. SMB远程命令执行（MS08-067、MS17-010、CVE-2017-7494）     c) 典型应用     ​    i. Mail暴力破解后信息挖掘及漏洞利用     ​    ii. VPN暴力破解后绕过边界     ​    iii. Redis 未授权访问或弱口令可导ssh公钥或命令执行     ​    iv. Rsync 未授权访问类     ​    v. Mongodb未授权访问类       ​    vi. Elasticsearch命令执行漏洞     ​    vii. Memcache未授权访问漏洞     ​    viii. 服务相关口令（mysql ldap zebra squid vnc smb）    
+## 渗透反辅### 密码读取    a) Windows: Mimikatz     b) Linux: mimipenguin  ### 帐号信息     a) 操作系统帐号     b) 数据库帐号      c) 应用帐号信息  ### 敏感信息   a) 配置信息     b) 数据库信息     c) 服务端口信息     d) 指纹信息  ### 滚雪球式线性拓展   a) 密码口令类拓展（远控）     b) 典型漏洞批量利用  ### 常见的入侵方式Getshell方法   a) WEB入侵     ​    i. 典型漏洞：注入Getshell , 上传Getshell，命令执行Getshell，文件包含Getshell，代码执行Getshell，编辑器getshell，后台管理Getshell，数据库操作Getshell     ​    ii. 容器相关：Tomcat、Axis2、WebLogic等中间件弱口令上传war包等，Websphere、weblogic、jboss反序列化，Struts2代码执行漏洞，Spring命令执行漏洞     b) 系统入侵     ​    i. SSH 破解后登录操作     ​    ii. RDP 破解后登录操作     ​    iii. MSSQL破解后远控操作     ​    iv. SMB远程命令执行（MS08-067、MS17-010、CVE-2017-7494）     c) 典型应用     ​    i. Mail暴力破解后信息挖掘及漏洞利用     ​    ii. VPN暴力破解后绕过边界     ​    iii. Redis 未授权访问或弱口令可导ssh公钥或命令执行     ​    iv. Rsync 未授权访问类     ​    v. Mongodb未授权访问类       ​    vi. Elasticsearch命令执行漏洞     ​    vii. Memcache未授权访问漏洞     ​    viii. 服务相关口令（mysql ldap zebra squid vnc smb）    
 
 ## 举例 ssh 后门  
 ### 安装步骤：  

@@ -48,26 +48,26 @@ System是php的一个内部函数，php代码是转化为opcode(指令)来执行
 
 ### 1、执行数据隐藏
 
-一个正常的程序员如果使用eval、system是不会刻意的转换隐藏的，如果发现某个函数执行了，代码中却找不到这个函数名，我们认为这是一个异常行为。以下面这个变形为例
-![](../pictures/phpwebshell8.png)
+一个正常的程序员如果使用eval、system是不会刻意的转换隐藏的，如果发现某个函数执行了，代码中却找不到这个函数名，我们认为这是一个异常行为。以下面这个变形为例  
+![](../pictures/phpwebshell8.png)  
 
  
-比如黑客传入参数nonalpha.php?_=system&__=whoami执行了一条命令，日志会记录
-![](../pictures/phpwebshell9.png)  
+比如黑客传入参数nonalpha.php?_=system&__=whoami执行了一条命令，日志会记录  
+![](../pictures/phpwebshell9.png)    
 
-我们在后端取nonalpha.php文件的第7行内容匹配system(字符串，如果没找到，则认为是一个变形webshell。
+我们在后端取nonalpha.php文件的第7行内容匹配system 字符串，如果没找到，则认为是一个变形webshell。  
  
 ### 2、数据传递隐藏
 
-先看下面这个例子  
-![](../pictures/phpwebshell10.png)  
+先看下面这个例子    
+![](../pictures/phpwebshell10.png)    
 
  
-这个webshell通过编码的referer来传递攻击载荷，利用日志文件记录到的文件名和行数把代码上报到后端，和后端svn中的代码做对比，如果不一致，则认为是一个webshell。  
+这个webshell通过编码的referer来传递攻击载荷，利用日志文件记录到的文件名和行数把代码上报到后端，和后端svn中的代码做对比，如果不一致，则认为是一个webshell。    
  
 ## 四、不足
 
-web承受着大量的访问请求，增加的php扩展的性能和稳定性是一个严峻的考验，另外在服务器比较多的公司还存在一个推广和部署成本。
+web承受着大量的访问请求，增加的php扩展的性能和稳定性是一个严峻的考验，另外在服务器比较多的公司还存在一个推广和部署成本。  
 
 ## 五、附录demo
 ``` c
