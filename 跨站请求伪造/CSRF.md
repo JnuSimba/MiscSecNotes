@@ -89,6 +89,8 @@ token 是一段随机的数字字母值，经常出现在表单的隐藏项中�
 token 如果出现在 get 参数中，也容易通过 refer的方式泄露；  
 此时只能通过验证码来防范csrf 了。  
 
+5. 如果是会修改内容的请求，请使用post 请求，且在满足post 内容格式要求的情况下使用`Content-Type:application/json`，而当不同源客户端添加 `Content-Type`为 `application/json` 的时候浏览器会进行预检（发送OPTIONS请求），之后请求就会失败（服务器不要在 `Access-Control-Allow-Headers` 中加入 `Content-type`），而不会进一步发起真实的post请求，否则可能造成其实数据已经被post请求修改，虽然服务器返回响应时被浏览器拦截了。    
+
 ## 五、测试tips 分享
 绕过csrf 防御技巧：  
 1. refer 验证绕过：只验证了是否存在关键词，如  
@@ -105,3 +107,5 @@ token 如果出现在 get 参数中，也容易通过 refer的方式泄露；
 http://interface.sina.cn/yuedu/index_feed.d.json?page=1&act=more&jsoncallback=<script>function a(msg){alert(msg.data.login_info.username);}</script><script src="http://xx.sina.com.cn/data_ajax.php?_a=top_data&rnd=16721&callback=a"></script>
 ```
 
+## Reference
+[OPTIONS 请求预检](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)    

@@ -36,7 +36,7 @@ Access-Control-Max-Age: 3600
 多个域名之间用逗号分隔，表示对所示域名提供跨域访问权限。"*" 表示允许所有域名的跨域访问。    
 
 客户端可以有两种行为：  
-* 发送OPTIONS请求，请求Access-Control信息。如果自己的域名在允许的访问列表中，则发送真正的请求，否则放弃请求发送。  
+* 发送OPTIONS请求，请求Access-Control信息。如果自己的域名在允许的访问列表中，则发送真正的请求，否则放弃请求发送。 [请求预检](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)   
 * 直接发送请求，然后检查response的Access-Control信息，如果自己的域名在允许的访问列表中，则读取response body，否则放弃。  
 
 本质上服务端的response内容已经到达本地，JavaScript决定是否要去读取。  
@@ -188,4 +188,5 @@ postMessage的安全注意事项
 
 ## Reference ##
 [浅谈浏览器端JavaScript 跨域解决方法](https://github.com/rccoder/blog/issues/5)  
-对方不想跟你说话并扔了个message.pdf
+对方不想跟你说话并扔了个message.pdf  
+https://fetch.spec.whatwg.org/#cors-safelisted-request-header  
