@@ -102,7 +102,25 @@ example.com
 </script>
 ```
 这样，就可以解决问题了。值得注意的是：document.domain 的设置是有限制的，只能设置为页面本身或者更高一级的域名。
-利用这种方法是极其方便的，但是如果一个网站被攻击之后另外一个网站很可能会引起安全漏洞。  
+利用这种方法是极其方便的，但是如果一个网站被攻击之后另外一个网站很可能会引起安全漏洞。    
+另外，如果某站点 js 写得不完善，导致设置错误的 document.domain，可能引起跨域cookie 读取问题。  
+``` html
+<script>
+document.domain="com";
+function test(){
+alert(document.getElementById("xxx").contentWindow.document.cookie);
+}
+</script>
+<script type="text/javascript">
+document.oncontextmenu=function(e){return false;}
+</script>
+<iframe frameborder="0" hspace="0" vspace="0" style="display:none"  id="xxx" onload="test()" src="http://1. example.com/test.html?domain=com"></iframe>
+```
+其中 `http://1. example.com/test.html?domain=com` 里面设置了错误的 `document.domain`      
+``` js
+var domain = location.search.split("?").pop().split("&").shift();
+document.domain = decodeURIComponent(domain));
+```
 
 ## 五、location.hash ##
 这种方法可以把数据的变化显示在 url 的 hash 里面。但是由于 chrome 和 IE 不允许修改parent.location.hash 的值，所以需要再加一层。
