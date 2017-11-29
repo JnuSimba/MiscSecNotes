@@ -119,7 +119,7 @@ document.oncontextmenu=function(e){return false;}
 其中 `http://1. example.com/test.html?domain=com` 里面设置了错误的 `document.domain`      
 ``` js
 var domain = location.search.split("?").pop().split("&").shift();
-document.domain = decodeURIComponent(domain));
+document.domain = decodeURIComponent(domain);
 ```
 
 ## 五、location.hash ##
