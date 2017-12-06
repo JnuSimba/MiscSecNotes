@@ -1,3 +1,5 @@
+原文 by [看雪学院](https://mp.weixin.qq.com/s?__biz=MjM5NTc2MDYxMw==&mid=2458286843&idx=1&sn=15e3d1aa8ae418cc5ed6010b390388b6&chksm=b1814a7186f6c367a24033a297edc3fe2275334f45fd0b944bb606dc449e027beb1b4bc6997d&scene=0#rd)  
+
 这是关于使用htaccess进行开发的两部分系列的第一部分。我将在这里介绍一些基本的、众所周知的方法，还有一些鲜为人知的方法。在第2部分中，我将通过使用htaccess来开发更高级的开发方法。  
  
 在本指南中，我将尝试解释.htaccess的各种非常规用法，这些用法对于渗透测试和后渗透攻击非常有用。我假设大多数读者会对.htaccess有所了解，但是对于那些不了解的人我会提供一个简短的解释。不管你对htaccess规则是否熟悉，我都希望这些内容很容易被大家掌握。    
@@ -329,4 +331,4 @@ AddType application/x-httpd-php .htaccess
 ```
 一般来说，如果攻击者使用htaccess作为维护shell访问受感染站点的手段，那么他们会在htaccess文件中添加某种形式的填充/空格或附加（无害）指令，使其长度更长，以至于系统管理员可能会注意到他们的htaccess文件中存在的任何可疑的PHP代码。对于更加隐蔽的htaccess shell，我建议将非字母数字组合放入您的PHP代码中（我将在即将发布的博客文章中介绍有关维护访问受损服务器方法的非字母数字主题）。  
  
-另外，对于在PHP不可用的情况下可以在htaccess中使用的各种形式的shell的完整列表，我强烈建议查看wireghoul的"htshells"存储库。  
+另外，对于在PHP不可用的情况下可以在htaccess中使用的各种形式的shell的完整列表，我强烈建议查看wireghoul的"[htshells](https://github.com/wireghoul/htshells)"存储库。  
