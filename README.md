@@ -17,6 +17,7 @@
 	* [常见函数](Web服务基础/常见函数.md)
 	* [nginx安全配置](Web服务基础/nginx安全配置.md)
 	* [apache安全配置](Web服务基础/apache安全配置.md)
+	* [htaccess文件利用](Web服务基础/htaccess文件利用.md)
 
 * 跨站脚本
 	* [解码顺序](跨站脚本/解码顺序.md)
