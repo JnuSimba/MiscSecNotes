@@ -84,6 +84,7 @@
 	* [信息泄露](信息泄露/信息泄露.md)
 
 * Bypass WAF
+	* [bypass cdn find ip](Bypass%20WAF/bypass%20cdn%20find%20ip.md)  
 	* [bypass sqli](Bypass%20WAF/bypass%20sqli.md)
 	* [bypass xss](Bypass%20WAF/XSS_Bypass_Cookbook_ver_3.0.pdf)
 	* [bypass waf（四个层次）](Bypass%20WAF/bypass%20waf（四个层次）.md)
