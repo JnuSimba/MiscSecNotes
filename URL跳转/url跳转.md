@@ -77,33 +77,22 @@ get/post 参数 url/jump/from/back/site 等关键字。
   
 ``` javascript
   
-$(".submit").on('click', function ()
-  
+$(".submit").on('click', function ()  
 {
-  
     var msg = "";
   
-
-  
     if ($(".user_name").val().trim() && $(".mail").val().trim() && $(".phone").val().trim())
-  
-    {
-  
+     {  
         submitUserInfo();
   
     }
-  
-    else
-  
+    else 
     {
   
     }
-  
 });
   
 ```
-  
-
   
 一般的网站登录跳转实现方式之一是：在login.php 对表单post 过来的user&pwd&email 验证，如果对则设置一个键值如 `$_SESSION["auth"]=true`，设置response 的Location Header : home.php，本程序exit。浏览器接收到rsp，看到Location 头部，于是跳转请求至home.php。home.php 可以对`$_SESSION["auth"]` 继续判断一次，若true 则显示登录后的页面。当然这一切的前提是login.php开启了session_start()，这样第二次访问home.php 也会带上`Cookie:PHPSESSID=xxx`，这样server 通过 $_COOKIE 获取sessionId就知道是同个用户的请求，通过sessionId就可以知道 $_SESSION 结构体中原本存放的数据，比如 `auth=True` 之类。
   

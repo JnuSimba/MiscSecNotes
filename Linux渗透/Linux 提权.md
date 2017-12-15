@@ -151,6 +151,6 @@ PwnLad是笔者最喜欢的挑战，一个攻击者有几个账号，但是都�
 这样当我们再次运行./msgmike命令的时候，就会触发当前目录下的cat(/bin/sh)，从而提权。完整的exploit如下  
 ![privi1](../pictures/privi17.png)  
 ## Reference
-[实战Linux下三种不同方式的提权技巧](http://bobao.360.cn/learning/detail/2984.html)
-[Scripted Local Linux Enumeration & Privilege Escalation Checks](https://github.com/rebootuser/LinEnum)   
-[Linux_Exploit_Suggester](https://github.com/PenturaLabs/Linux_Exploit_Suggester)   
+[实战Linux下三种不同方式的提权技巧](http://bobao.360.cn/learning/detail/2984.html)  
+[Scripted Local Linux Enumeration & Privilege Escalation Checks](https://github.com/rebootuser/LinEnum)     
+[Linux_Exploit_Suggester](https://github.com/PenturaLabs/Linux_Exploit_Suggester)     

@@ -170,7 +170,7 @@ while '\'' not in randStr:
         randStr = randomStr(length=10, alphabet=HEURISTIC_CHECK_ALPHABET)
 ```
 然后我们去查看randomStr，此函数在common.py 下，相关代码如下：  
-```
+``` python
 def randomStr(length=4, lowercase=False, alphabet=None):
     """
     Returns random string value with provided number of characters
