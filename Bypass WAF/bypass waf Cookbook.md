@@ -388,4 +388,8 @@ As all features are disclosed, the protection ability of WAF will surly be devel
 So we don’t have worry if all features are covered by WAF and we’ll have no ammunition left. There are so many unknown features waiting to dig up.  
   
 When you find all there postures can’t function well, it’s time to discover new features. After all WAF designers all continue their design by current perception. As new features arise, another round of bypass will come.   
-  
+
+## Reference
+https://medium.com/secjuice/waf-evasion-techniques-718026d693d8  
+https://medium.com/secjuice/web-application-firewall-waf-evasion-techniques-2-125995f3e7b0  
+
