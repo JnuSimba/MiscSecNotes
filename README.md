@@ -106,6 +106,7 @@
 	
 ### 渗透测试
 * Linux渗透
+	* [Linux执行命令监控](Linux渗透/Linux执行命令监控.md)  
 	* [Linux 入侵检测](Linux渗透/Linux%20入侵检测.md)
 	* [Linux 提权](Linux渗透/Linux%20提权.md)
 	* [Rootkit 综合教程](Linux渗透/Rootkit%20综合教程.md)
