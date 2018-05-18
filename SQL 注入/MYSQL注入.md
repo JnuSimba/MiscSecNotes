@@ -9,6 +9,9 @@ mysql 5 联合查询；mysql 4 不支持联合查询。
 SELECT * FROM Articles WHERE id = '1''';
 SELECT 1 FROM dual WHERE 1 = '1'''''''''''''UNION SELECT '2';
 ```
+union select 不能用逗号时，可以用join执行联合查询，即先join 成一个大表，再select 这个大表   
+`and+1=2+union+SELECT+*+FROM+(select+version())+as+a+join+(select+22)+as+b+join+(select+33)+as+c%23`  
+
 
 下面的符号可以用来注释语句：  
 &#35; Hash 语法（注意浏览器访问时需要编码成%23，否则被当作锚点起始）  
