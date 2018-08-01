@@ -769,17 +769,20 @@ QuarkPwDump.exe -dhl -o "c:\1.txt"
 
 
 ##### win8+win2012明文抓取 
-修改一个注册表就可以抓取了  
+
+
+测试失败  
+工具：https://github.com/samratashok/nishang/blob/master/Gather/Invoke-MimikatzWDigestDowngrade.ps1  
+文章地址：https://www.trustedsec.com/april-2015/dumping-wdigest-creds-with-meterpreter-mimikatzkiwi-in-windows-8-1/  
+
+更新KB2871997补丁后，可禁用Wdigest Auth强制系统的内存不保存明文口令，此时mimikatz和wce均无法获得系统的明文口令。但是其他一些系统服务(如IIS的SSO身份验证)在运行的过程中需要Wdigest Auth开启，所以补丁采取了折中的办法——安装补丁后可选择是否禁用Wdigest Auth。当然，如果启用Wdigest Auth，内存中还是会保存系统的明文口令。   
+需要将UseLogonCredential的值设为1，然后注销当前用户，用户再次登录后使用mimikatz即可导出明文口令，故修改一个注册表就可以抓取了    
 ```
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1
 ```
 
-测试失败  
-工具：https://github.com/samratashok/nishang/blob/master/Gather/Invoke-MimikatzWDigestDowngrade.ps1
-文章地址：https://www.trustedsec.com/april-2015/dumping-wdigest-creds-with-meterpreter-mimikatzkiwi-in-windows-8-1/
-
 ***
-域用户hash抓取  
+#### 域用户hash抓取  
 ##### mimikatz
 只能抓取登陆过的用户hash，无法抓取所有用户,需要免杀  
 1、本机测试直接获取内存中的明文密码  
