@@ -120,6 +120,7 @@
 	* [Windows 入侵检测](Windows渗透/Windows%20入侵检测.md)
 	* [Windows 入侵排查](Windows渗透/Windows%20入侵排查.md)
 	* [Windows 渗透测试](Windows渗透/Windows%20渗透测试.md)  
+	* [Windows 应急响应](Windows渗透/Windows%20应急响应.md)  
 
 ### 安全建设
 * 安全建设
