@@ -152,7 +152,7 @@ Microsoft->Windows->PowerShell->OPtions
 * Windows Management Instrumentation - 管理 WMI 供应商
 * DCOM Server Process Launcher - 管理进程外 COM 应用程序
 
-** PSExec **
+**PSExec**
 PSExec是系统管理员的远程命令执行工具，包含在“Sysinternals Suite”工具中，但它通常也用于针对性攻击的横向移动。  
 PsExec的典型行为 
 
