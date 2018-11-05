@@ -104,7 +104,8 @@ if (isset($_GET['q'])) {
 ?>
 ```
 触发： firefox `http://localhost/test/reflection_xss/xss_in_jsoncallback.php?q=%3Cscript%3Ealert(11)%3C/script%3E`  
-修复：对于传入的callback参数，使用 htmlspecialchars 编码，或者把返回content-type 定为 `application/json`，注意 `text/plain` 在某些浏览器上不可靠   
+修复：对于传入的callback参数，使用 htmlspecialchars 编码，或者把返回content-type 定为 `application/json`，注意 `text/plain` 在某些浏览器上不可靠，同时添加X-Content-Type-Options: nosniff头    
+注意：添加X-Content-Type-Options: nosniff头前，请确认站点下所有接口已设置了与内容相符的Content-type     
 7. 输出到标签属性，没有过滤单引号（双引号，没有引号同理）  
 ``` php
 <?php
