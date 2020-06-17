@@ -66,19 +66,14 @@
 
 * 命令执行
 	* [命令执行](命令执行/命令执行.md)
-
 * 文件包含
 	* [文件包含](文件包含/文件包含.md)
-
 * 文件解析
 	* [文件解析](文件解析/文件解析.md)
-
 * 文件上传
 	* [文件上传](文件上传/文件上传.md)
-
 * 信息泄露
 	* [信息泄露](信息泄露/信息泄露.md)
-
 * Bypass WAF
 	* [bypass cdn find ip](Bypass%20WAF/bypass%20cdn%20find%20ip.md)  
 	* [bypass sqli](Bypass%20WAF/bypass%20sqli.md)
@@ -86,20 +81,21 @@
 	* [bypass waf（四个层次）](Bypass%20WAF/bypass%20waf（四个层次）.md)
 	* [bypass waf Cookbook](Bypass%20WAF/bypass%20waf%20Cookbook.md)
 	* [waf 之SQL注入防御思路分享](Bypass%20WAF/waf%20之SQL注入防御思路分享.md)
-
 * 工具与思路
 	* [漏洞检测思路](工具与思路/漏洞检测思路.md)
 	* [漏洞挖掘与工具](工具与思路/漏洞挖掘与工具.md)
 	* [子域名爆破](工具与思路/子域名爆破.md)  
 	* [暴力破解](工具与思路/暴力破解.md)   
-	
 * 协议相关
 	* [IPv6协议相关](协议相关/IPv6协议相关.md)   
 	* [IPv6协议安全](协议相关/IPv6协议安全.md)  
-
 * 漏洞修复
-	* [漏洞修复指南](漏洞修复/漏洞修复指南.md)
-	
+  * [漏洞修复指南](漏洞修复/漏洞修复指南.md)
+
+* 漏洞科普
+
+  * [fastjson远程命令执行漏洞原理](漏洞科普/fastjson远程命令执行漏洞原理.md)
+  * [PHP-FPM 远程命令执行漏洞](漏洞科普/PHP-FPM%20远程命令执行漏洞.md)
 ### 渗透测试
 * Linux渗透
 	* [Linux执行命令监控](Linux渗透/Linux执行命令监控.md)  
