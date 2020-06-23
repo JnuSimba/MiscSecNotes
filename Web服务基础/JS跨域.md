@@ -26,7 +26,7 @@ src 标签请求返回即 `<script> mycallback({foo: 'bar'});</script>` 也就�
 > Cross-origin resource sharing (CORS) is a mechanism that allows a web page to make XMLHttpRequests to another domain. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the same origin security policy. CORS defines a way in which the browser and the server can interact to determine whether or not to allow the cross-origin request. It is more powerful than only allowing same-origin requests, but it is more secure than simply allowing all such cross-origin requests. --Wikipedia
 
 通过在HTTP Header中加入扩展字段，服务器在相应网页头部加入字段表示允许访问的domain和HTTP method，客户端检查自己的域是否在允许列表中，决定是否处理响应。实现的基础是JavaScript不能够操作HTTP Header，某些浏览器插件实际上是具有这个能力的。  
-  
+
 服务器端在HTTP的响应头中加入（页面层次的控制模式）：    
 Access-Control-Allow-Origin: http://example.com  
 Access-Control-Request-Method: GET, POST  
@@ -40,6 +40,10 @@ Access-Control-Max-Age: 3600
 * 直接发送请求，然后检查response的Access-Control信息，如果自己的域名在允许的访问列表中，则读取response body，否则放弃。  
 
 本质上服务端的response内容已经到达本地，JavaScript决定是否要去读取。  
+
+假设一个站点提供api 供跨域调用，那么兼顾方便与安全的设置应该是：
+
+将Access-Control-Allow-Origin: *，但Access-Control-Allow-Credentials为false。这是因为，CORS配置不当类风险，危害通常为泄露用户敏感数据，此类接口通常需要鉴权。Access-Control-Allow-Credentials为false后，用户登录态将不会随CORS请求发送，进而降低了此类风险。
 
 ## 三、window.name ##
 window.name 在一个窗口（标签）的生命周期之内是共享的，利用这点就可以传输一些数据。
