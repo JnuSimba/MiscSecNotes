@@ -38,14 +38,13 @@
 	* [php open_basedir](PHP安全/php%20open_basedir.md)
 	* [php 安全编码](PHP安全/php%20安全编码.md)
 	* [php 弱类型问题](PHP安全/php%20弱类型问题.md)
-	* [php 代码审计入门](PHP安全/php%20代码审计入门.md)
 	* [php 高级代码审计](PHP安全/php%20高级代码审计.md)
 	* [php 框架审计](PHP安全/php%20框架审计.md)
 	* [php 版本特点](PHP安全/php%20版本特点.md)
 	* [php 防getshell思路](PHP安全/php%20防getshell思路.md)
 	* [php 变形shell检测](PHP安全/php%20变形shell检测.md)
 	* [php rasp实现](PHP安全/php%20rasp%20实现.md)  
-
+	
 * URL跳转
 	* [url跳转](URL跳转/url跳转.md)
 
@@ -75,12 +74,10 @@
 * 信息泄露
 	* [信息泄露](信息泄露/信息泄露.md)
 * Bypass WAF
-	* [bypass cdn find ip](Bypass%20WAF/bypass%20cdn%20find%20ip.md)  
-	* [bypass sqli](Bypass%20WAF/bypass%20sqli.md)
-	* [bypass xss](Bypass%20WAF/XSS_Bypass_Cookbook_ver_3.0.pdf)
-	* [bypass waf（四个层次）](Bypass%20WAF/bypass%20waf（四个层次）.md)
-	* [bypass waf Cookbook](Bypass%20WAF/bypass%20waf%20Cookbook.md)
-	* [waf 之SQL注入防御思路分享](Bypass%20WAF/waf%20之SQL注入防御思路分享.md)
+  * [bypass sqli](Bypass%20WAF/bypass%20sqli.md)
+  * [bypass waf（四个层次）](Bypass%20WAF/bypass%20waf（四个层次）.md)
+  * [bypass waf Cookbook](Bypass%20WAF/bypass%20waf%20Cookbook.md)
+  * [waf 之SQL注入防御思路分享](Bypass%20WAF/waf%20之SQL注入防御思路分享.md)
 * 工具与思路
 	* [漏洞检测思路](工具与思路/漏洞检测思路.md)
 	* [漏洞挖掘与工具](工具与思路/漏洞挖掘与工具.md)
@@ -114,38 +111,3 @@
 	* [Windows 渗透测试](Windows渗透/Windows%20渗透测试.md)  
 	* [Windows 应急响应](Windows渗透/Windows%20应急响应.md)  
 
-### 安全建设
-* 安全建设
-	* [Google基础设施安全设计概述翻译和导读](安全建设/Google基础设施安全设计概述翻译和导读.md)  
-	* [中小企业网络安全建设指引](安全建设/中小企业网络安全建设指引.md)  
-	* [大型互联网企业安全实践](安全建设/大型互联网企业安全实践.md)
-	* [从Google白皮书看企业安全最佳实践](安全建设/从Google白皮书看企业安全最佳实践.md)
-	* [安全产品的自我修养](安全建设/安全产品的自我修养.md)  
-	* [产品经理眼中比较理想的WEB扫描器](安全建设/产品经理眼中比较理想的WEB扫描器.md)
-	* [产品经理眼中未来两年的完美WAF](安全建设/产品经理眼中未来两年的完美WAF.md) 
-	* [如何建立有效的安全策略](安全建设/如何建立有效的安全策略.md)
-	* [大型网络入侵体系建设](安全建设/大型网络入侵体系建设.md)
-	* [非即时反馈策略和随机噪音在业务安全中的应用](安全建设/非即时反馈策略和随机噪音在业务安全中的应用.md)  
-	* [初探 下一代网络隔离和访问限制](安全建设/初探%20下一代网络隔离和访问限制.md)
-	* [互联网企业安全之端口扫描监控](安全建设/互联网企业安全之端口扫描监控.md)
-	* [谷歌的零信任安全架构实践](安全建设/谷歌的零信任安全架构实践.md)  
-	* [互联网企业如何建设数据安全体系](安全建设/互联网企业如何建设数据安全体系.md)  
-	* [我理解的安全运营](安全建设/我理解的安全运营.md)  
-	* [互联网公司移动安全领域的探索与实践](安全建设/互联网公司移动安全领域的探索与实践.md)  
-	
-
-### docker 安全
-* Docker安全
-	* [docker安全杂谈](Docker安全/docker安全杂谈.md)  
-	* [从自身漏洞和架构缺陷，谈docker安全建设](Docker安全/从自身漏洞和架构缺陷，谈docker安全建设.md) 
-	* [关于docker的几点安全解析](Docker安全/关于docker的几点安全解析.md)
-	* [绝不避谈docker安全](Docker安全/绝不避谈docker安全.md) 
-	* [浅谈docker安全合规建设](Docker安全/浅谈docker安全合规建设.md)
-	* [如何打造安全的容器云平台](Docker安全/如何打造安全的容器云平台.md)  
-
-### 云计算安全
-* 云计算安全
-	* [经典网络与VPC](云计算安全/经典网络与VPC.md)
-	* [浅析云计算环境下的安全风险](云计算安全/浅析云计算环境下的安全风险.md)
-	* [云安全审计（评估）](云计算安全/云安全审计（评估）.md)
-	* [从云消费者的角度谈云安全架构](云计算安全/从云消费者的角度谈云安全架构.md)  
