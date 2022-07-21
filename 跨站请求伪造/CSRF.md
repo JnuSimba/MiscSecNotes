@@ -106,6 +106,7 @@ token 如果出现在 get 参数中，也容易通过 refer的方式泄露；
 ```
 http://interface.sina.cn/yuedu/index_feed.d.json?page=1&act=more&jsoncallback=<script>function a(msg){alert(msg.data.login_info.username);}</script><script src="http://xx.sina.com.cn/data_ajax.php?_a=top_data&rnd=16721&callback=a"></script>
 ```
+**注意**：从页面`document.referer` 获取的是当前页面的上一跳，而发起http 请求带的referer头 是指的当前发起请求时所在的页面
 
 ## Reference
 [OPTIONS 请求预检](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)    
