@@ -108,7 +108,7 @@ http://interface.sina.cn/yuedu/index_feed.d.json?page=1&act=more&jsoncallback=<s
 ```
 **注意**：
 1. 从页面`document.referer` 获取的是当前页面的上一跳，而发起http 请求带的referer头 是指的当前发起请求时所在的页面
-2. 从浏览器页面发起的请求，自动带上referer和origin等头部（默认值），但如果抓包拦截是可以修改的；直接从服务器后台发起的请求，更是可以任意添加头部和值，且返回内容直接给到服务器后台，故也不存在浏览器的跨域策略限制等。
+2. 从浏览器页面发起的请求，自动带上referer和origin等头部（默认值），但如果抓包拦截是可以修改的（无法作为自动化攻击手段）；直接从服务器后台发起的请求，更是可以任意添加头部和值，且返回内容直接给到服务器后台，故也不存在浏览器的跨域策略限制等。
 
 ## Reference
 [OPTIONS 请求预检](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)    
