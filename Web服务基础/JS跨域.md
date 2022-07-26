@@ -45,6 +45,49 @@ Access-Control-Max-Age: 3600
 
 将Access-Control-Allow-Origin: *，但Access-Control-Allow-Credentials为false。这是因为，CORS配置不当类风险，危害通常为泄露用户敏感数据，此类接口通常需要鉴权。Access-Control-Allow-Credentials为false后，用户登录态将不会随CORS请求发送，进而降低了此类风险。
 
+### 跨域cookies相关
+```
+GET /resources/credentialed-content/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:71.0) Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Referer: https://foo.example/examples/credential.html
+Origin: https://foo.example
+Cookie: pageAccess=2
+
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 01:34:52 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Credentials: true
+Cache-Control: no-cache
+Pragma: no-cache
+Set-Cookie: pageAccess=3; expires=Wed, 31-Dec-2008 01:34:53 GMT
+Vary: Accept-Encoding, Origin
+Content-Encoding: gzip
+Content-Length: 106
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Content-Type: text/plain
+
+[text/plain payload]
+```
+即使第 10 行指定了 Cookie 的相关信息，但是，如果 https://bar.other 的响应中缺失 Access-Control-Allow-Credentials: true（第 17 行），则响应内容不会返回给请求的发起者。
+对于附带身份凭证的请求（通常是 Cookie），服务器不得设置 Access-Control-Allow-Origin 的值为“*”。
+
+这是因为请求的首部中携带了 Cookie 信息，如果 Access-Control-Allow-Origin 的值为“*”，请求将会失败。而将 Access-Control-Allow-Origin 的值设置为 https://example.com， 则请求将成功执行。
+
+另外，响应首部中也携带了 Set-Cookie 字段，尝试对 Cookie 进行修改。如果操作失败，将会抛出异常。
+
+注意在 CORS 响应中设置的 cookies 适用一般性第三方 cookie 策略。在上面的例子中，页面是在 foo.example 加载，但是第 20 行的 cookie 是被 bar.other 发送的，如果用户设置其浏览器拒绝所有第三方 cookies，那么将不会被保存。
+
+请求中的 cookie（第 10 行）也可能在正常的第三方 cookie 策略下被阻止。因此，强制执行的 cookie 策略可能会使本节描述的内容无效（阻止你发出任何携带凭据的请求）。
+
+Cookie 策略受 [SameSite](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie/SameSite) 属性控制。
+
 ## 三、window.name ##
 window.name 在一个窗口（标签）的生命周期之内是共享的，利用这点就可以传输一些数据。
 除此之外，结合 iframe 还能实现更加强大的功能：
