@@ -91,6 +91,13 @@ token 如果出现在 get 参数中，也容易通过 refer的方式泄露；
 
 5. 如果是会修改内容的请求，请使用post 请求，且在满足post 内容格式要求的情况下使用`Content-Type:application/json`，而当不同源客户端添加 `Content-Type`为 `application/json` 的时候浏览器会进行预检（发送OPTIONS请求），之后请求就会失败（服务器不要在 `Access-Control-Allow-Headers` 中加入 `Content-type`），而不会进一步发起真实的post请求，否则可能造成其实数据已经被post请求修改，虽然服务器返回响应时被浏览器拦截了。    
 
+6. 设置Set-Cookie 头部的[samesite 属性](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie/SameSite)，即允许声明该 Cookie 是否仅限于第一方或者同一站点上下文，即在跨域请求时第三方站点cookie 不会一起发送出去
+
+7. 双重cookie校验。利用csrf 不能获取到用户cookie的特点，可以要求ajax和表单请求都携带一个cookie值
+- 在用户访问站点页面时，往cookie植入一个随机值xxx
+- 在前端往后端请求时获取到cookie值并携带到url 如 cgi?csrfcookie=xxx
+- 后端验证cookie中的字段值与url 参数值是否一致
+
 ## 五、测试tips 分享
 绕过csrf 防御技巧：  
 1. refer 验证绕过：只验证了是否存在关键词，如  
