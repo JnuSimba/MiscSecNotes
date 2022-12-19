@@ -54,7 +54,9 @@ dual 是一个虚拟表，可以用来做测试。
 注意：  
 where a_exp or b_exp 中如果 a_exp is true 是不会计算 b_exp 的，如果 a_exp is false，那 b_exp 执行且执行的次数跟表的条目有关，即如果 b_exp 是 sleep(2)，而表有3个条目，将睡眠6s 后返回。    
 where a_exp and b_exp 中如果 a_exp is false 是不会计算 b_exp 的，如果 a_exp is true，那 b_exp 执行且执行的次数跟表的条目有关，即如果 b_exp 是 sleep(2)，而表有3个条目，将睡眠6s 后返回。     
-测试时尽量不用 or 1=1, 如果sql 语句是执行update 或者delete，容易造成数据变更。
+
+测试时尽量不用 or 1=1, 如果sql 语句是执行update 或者delete，容易造成数据变更。 
+
 在没有加() 等其他符号时， and 和 or 一起出现先计算 and，为了绕过对 and / or 的过滤，可以使用 rlike 等关键字，比如 `where 11=11 rlike sleep(10)#`。     
 `?id=1%27%20AnD%201=2%20OR%20if(now()%3dsysdate()%2csleep(3)%2c0)%20And%20%271%27=%271`  
 
