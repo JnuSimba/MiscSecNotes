@@ -398,3 +398,4 @@ In all other cases, the arguments are compared as floating-point (real) numbers.
 [sql-injection-cheat-sheet](https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/)  
 [Implicit type conversion in MySQL](https://tom.vg/2013/04/mysql-implicit-type-conversion/)  
 [sql_injection](http://websec.ca/kb/sql_injection)  
+[NoSQL 从 0 到1（MongoDB and InfluxDB）](https://paper.seebug.org/3116/)
